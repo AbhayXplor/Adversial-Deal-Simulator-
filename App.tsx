@@ -54,7 +54,8 @@ const App: React.FC = () => {
         setState(prev => ({ ...prev, content: text, clauses, risks, isAnalyzing: false }));
         if (risks.length > 0) setSelectedRiskId(risks[0].id);
       } catch (error: any) {
-        alert(error.message || "Analysis failed. Please check your API key.");
+        console.error("Analysis Error:", error);
+        alert(error.message || "Analysis failed. Please check your API key and model selection.");
         setState(prev => ({ ...prev, isAnalyzing: false, analysisProgress: 0 }));
       }
     };
@@ -108,9 +109,9 @@ const App: React.FC = () => {
               onChange={(e) => updateConfig('reasoningModel', e.target.value)}
               className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none appearance-none cursor-pointer"
             >
-              <option value="gemini-3-pro-preview">Gemini 3 Pro (Recommended)</option>
-              <option value="gemini-3-flash-preview">Gemini 3 Flash</option>
-              <option value="gemini-2.5-flash-lite-latest">Gemini 2.5 Flash Lite</option>
+              <option value="gemini-3-pro-preview">Gemini 3 Pro (Complex Tasks)</option>
+              <option value="gemini-3-flash-preview">Gemini 3 Flash (Fast Reasoning)</option>
+              <option value="gemini-flash-lite-latest">Gemini Flash Lite (Most Efficient)</option>
             </select>
           </div>
 
@@ -121,16 +122,16 @@ const App: React.FC = () => {
               onChange={(e) => updateConfig('extractionModel', e.target.value)}
               className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none appearance-none cursor-pointer"
             >
-              <option value="gemini-3-flash-preview">Gemini 3 Flash (Fast)</option>
-              <option value="gemini-2.5-flash-lite-latest">Gemini 2.5 Flash Lite (Light)</option>
-              <option value="gemini-3-pro-preview">Gemini 3 Pro (High Quality)</option>
+              <option value="gemini-3-flash-preview">Gemini 3 Flash (Fastest)</option>
+              <option value="gemini-flash-lite-latest">Gemini Flash Lite (Efficiency)</option>
+              <option value="gemini-3-pro-preview">Gemini 3 Pro (Deep Extraction)</option>
             </select>
           </div>
         </div>
 
         <div className="mt-auto bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
            <h4 className="text-xs font-bold text-indigo-600 uppercase mb-2">Engine Integrity</h4>
-           <p className="text-[10px] text-indigo-400 leading-relaxed font-medium">Model selections persist during your current session. High-reasoning models provide deeper adversarial insights but may have higher latency.</p>
+           <p className="text-[10px] text-indigo-400 leading-relaxed font-medium">Model selections persist during your current session. High-reasoning models like Gemini 3 Pro provide deeper adversarial insights but may have higher latency.</p>
         </div>
       </div>
     </div>
