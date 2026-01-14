@@ -1,63 +1,60 @@
-# Adversarial Deal Simulator (ADS)
+# ADS.SIM // Adversarial Deal Simulator
 
-**Repository Name:** `adversarial-deal-simulator`  
-**Description:** A deterministic, rule-based intelligence engine for credit agreement analysis. ADS identifies structural vulnerabilities and contractual loopholes by cross-referencing negative covenants, investment baskets, and guarantee release mechanisms.
+### "Unit Testing" for Billion-Dollar Credit Agreements.
 
----
-
-## Overview
-
-The Adversarial Deal Simulator is designed for institutional credit analysts, distressed debt investors, and legal professionals. Unlike standard NLP tools, ADS uses a logic-first approach to simulate how sophisticated borrowers might exploit specific clause combinations (e.g., J.Crew-style asset transfers or Serta-style non-pro-rata priming).
-
-### Key Features
-- **Adversarial Scenario Simulation:** Projects hypothetical borrower actions based on explicit contractual "vacuums."
-- **Clause-Level Evidence Linking:** Every risk flag is linked to a verbatim section of the source document with cryptographic hash referencing.
-- **Risk Vector Analysis:** Quantifies impact across three distinct dimensions: Recovery Risk, Control Risk, and Timing Risk.
-- **Structural Risk Index:** A high-level weighted score of the agreement's overall structural integrity.
-- **Comparison View:** Toggle between "Base Case" (standard interpretation) and "Adversarial Case" (loophole highlighting).
+**ADS.SIM** is a deterministic intelligence engine designed to identify structural loopholes in complex credit agreements. It treats legal documentation as "legal code," scanning for adversarial logic patterns that sophisticated borrowers use to strip assets, dilute collateral, and subordinate lenders.
 
 ---
 
-## Technology Stack
-- **Frontend:** React 19 (ESM)
-- **Styling:** Tailwind CSS (Modern SaaS Aesthetic)
-- **Intelligence Engine:** Gemini 3 Pro (Logic & Reasoning), Gemini 3 Flash (Extraction)
-- **State Management:** React Context / Hooks
+## 💡 Inspiration
+In the high-stakes world of private credit and distressed debt, a single missing word in a 500-page document can lead to billions in losses (e.g., the infamous J.Crew "Trap Door" or Serta "Uptiering"). Legal risk is often hidden in the *interaction* between disparate clauses. We built ADS to automate the discovery of these "legal bugs" before they manifest as financial losses.
+
+## 🚀 What it does
+ADS scans uploaded credit agreements and applies a rule-based logic engine to:
+- **Identify Loophole Patterns:** Detects J.Crew, Serta, Chewy, and Incora-style structural weaknesses.
+- **Simulate Adversarial Actions:** Projects exactly how a borrower could exploit the specific language found in the agreement.
+- **Evidence-Linked Auditing:** Every risk flag is directly linked to verbatim text in the document, ensuring 100% explainability (no "black box" AI hallucinations).
+- **Quantify Vector Risk:** Breaks down risk across Recovery, Control, and Timing dimensions.
+
+## 🛠️ How we built it
+- **Frontend:** React 19 (ESM) with a high-fidelity SaaS dashboard built in Tailwind CSS.
+- **Logic Engine:** Dual-model architecture:
+    - **Gemini 3 Flash:** Handles high-volume verbatim clause extraction and indexing.
+    - **Gemini 3 Pro:** Performs deep adversarial reasoning and cross-clause dependency analysis.
+- **Deterministic Scanning:** We use Structured Outputs (JSON Schema) to ensure the AI adheres to a strict legal-logic framework rather than making speculative claims.
+
+## 🧠 Challenges we ran into
+Standard LLMs often struggle with the "cross-referencing" required in legal text (e.g., how a definition in Article I changes the permission of a covenant in Article VI). We solved this by using a multi-pass extraction technique where the model first "indexes" the document's definitions before attempting to find loopholes.
+
+## ✅ Accomplishments that we're proud of
+- **100% Determinism:** The system never provides "legal advice"—it highlights what the document *explicitly allows*.
+- **High-Fidelity UI:** A terminal-to-SaaS interface that feels like a professional financial terminal.
+- **Adversarial Highlighting:** Precisely identifying the 3-4 words in a 10,000-word section that create the vulnerability.
+
+## 📖 What we learned
+Legal text is surprisingly similar to code. If-then statements, nested logic, and variable definitions (definitions sections) are the building blocks of contracts. Viewing law through an engineering lens allows for much more predictable risk assessment.
+
+## 🔮 What's next for ADS
+- **Remediation Suggestion:** Automatically generating "Redline" fixes to close identified loopholes.
+- **Market Benchmarking:** Comparing a deal's structural tightness against thousands of other market precedents.
+- **Multi-Document Analysis:** Scanning the interaction between a Credit Agreement and an Intercreditor Agreement simultaneously.
 
 ---
 
-## Deployment Configuration
+## 🛠️ Installation & Deployment
 
 ### Environment Variables
-To deploy this application (e.g., on Vercel), you must configure the following environment variable:
+To deploy ADS (e.g., on Vercel), add the following:
 
-| Variable | Description | Required |
-| :--- | :--- | :--- |
-| `API_KEY` | The primary API key for the underlying intelligence engine. | Yes |
+| Variable | Description |
+| :--- | :--- |
+| `API_KEY` | Your Gemini API Key (Must support Gemini 3 Pro/Flash) |
 
-### Vercel Setup
-1.  **Create Project:** Import the repository into Vercel.
-2.  **Environment Variables:** Navigate to `Settings > Environment Variables`.
-3.  **Add Key:** Add a new variable named `API_KEY` and paste your project key.
-4.  **Deploy:** The application is configured for zero-config deployment with standard React build settings.
-
----
-
-## Architecture of Analysis
-
-The analysis follows a deterministic three-stage pipeline:
-1.  **Ingestion:** Verbatim extraction of critical definitions and negative covenants.
-2.  **Rule Application:** Cross-referencing "Permitted Investment" baskets against "Lien Release" and "Unrestricted Subsidiary" definitions.
-3.  **Simulation:** Generating the most probable adversarial path permitted by the identified language.
+### Local Setup
+1. Clone the repository.
+2. Install dependencies.
+3. Ensure `API_KEY` is set in your environment.
+4. Run the development server.
 
 ---
-
-## Disclaimers
-
-- **Non-Legal Advice:** This system provides deterministic rule-based analysis of text. It does not provide legal conclusions or legal advice.
-- **No Speculation:** Analysis is limited to the explicit text provided in the document.
-- **Institutional Use:** Designed as a decision-support tool for regulated professionals.
-
----
-
-© 2024 ADS Terminal // Institutional Risk Intelligence
+*Built for the 2024 AI Financial Logic Hackathon.*
