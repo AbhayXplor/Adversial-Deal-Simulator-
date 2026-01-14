@@ -1,0 +1,5 @@
+{
+  "name": "Adversarial Deal Simulator",
+  "description": "A rule-based scanner for credit agreements that identifies structural weaknesses and contractual risks based on explicit clause combinations.",
+  "requestFramePermissions": []
+}
