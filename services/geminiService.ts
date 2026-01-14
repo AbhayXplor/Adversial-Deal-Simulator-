@@ -1,16 +1,25 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import { Clause, RiskAnalysis, RiskSeverity } from "../types.ts";
+import { Clause, RiskAnalysis, RiskSeverity, APIConfig } from "../types.ts";
 
 export const analyzeCreditAgreement = async (
   text: string, 
+  config: APIConfig,
   onProgress: (p: number) => void
 ): Promise<{ clauses: Clause[], risks: RiskAnalysis[] }> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  // Use custom key if provided, otherwise fallback to env
+  const apiKey = config.customKey.trim() !== '' ? config.customKey : (process.env.API_KEY || '');
+  
+  if (!apiKey) {
+    throw new Error("No API Key provided. Please set a custom key in settings or ensure API_KEY env is set.");
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   
   onProgress(15);
   
+  // Phase 1: Clause Extraction
   const extractionResponse = await ai.models.generateContent({
-    model: 'gemini-3-flash-preview',
+    model: config.extractionModel || 'gemini-3-flash-preview',
     contents: `Analyze this credit agreement. Extract verbatim clauses for: Unrestricted Subsidiaries, Investments, Debt Incurrence, Asset Transfers, and Change of Control.
     Document Text: ${text.substring(0, 45000)}`,
     config: {
@@ -35,8 +44,9 @@ export const analyzeCreditAgreement = async (
   onProgress(45);
   const extractedClauses: Clause[] = JSON.parse(extractionResponse.text || "[]");
 
+  // Phase 2: Adversarial Risk Identification
   const riskResponse = await ai.models.generateContent({
-    model: 'gemini-3-pro-preview',
+    model: config.reasoningModel || 'gemini-3-pro-preview',
     contents: `Acting as an adversarial credit analyst, identify structural vulnerabilities in these clauses. 
     Focus on: Unrestricted Subsidiaries, Asset Transfer Leakage, Debt Incurrence, Cure Period Abuse, and Change of Control.
     

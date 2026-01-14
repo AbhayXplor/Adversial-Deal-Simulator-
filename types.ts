@@ -25,14 +25,19 @@ export interface RiskAnalysis {
   ruleLogic: string;
   ruleLabel: string;
   evidenceSnippet: string;
-  // New Adversarial Fields
   scenarioTitle: string;
   scenarioNarrative: string;
   scenarioImpact: string;
   recoveryRisk: ImpactLevel;
   controlRisk: ImpactLevel;
   timingRisk: ImpactLevel;
-  adversarialHighlight: string; // Specific part of evidence to highlight
+  adversarialHighlight: string;
+}
+
+export interface APIConfig {
+  customKey: string;
+  reasoningModel: string;
+  extractionModel: string;
 }
 
 export interface ProjectState {
@@ -43,5 +48,6 @@ export interface ProjectState {
   isAnalyzing: boolean;
   analysisProgress: number;
   view: 'landing' | 'simulator';
-  showAdversarial: boolean; // Toggle for base vs adversarial view
+  showAdversarial: boolean;
+  apiConfig: APIConfig;
 }
