@@ -1,9 +1,9 @@
 import React, { useState, useRef, useMemo } from 'react';
-import Navbar from './components/Navbar';
-import RiskCard from './components/RiskCard';
-import { ProjectState, RiskSeverity, ImpactLevel } from './types';
-import { analyzeCreditAgreement } from './services/geminiService';
-import { ADVERSARIAL_PATTERNS } from './constants';
+import Navbar from './components/Navbar.tsx';
+import RiskCard from './components/RiskCard.tsx';
+import { ProjectState, RiskSeverity, ImpactLevel } from './types.ts';
+import { analyzeCreditAgreement } from './services/geminiService.ts';
+import { ADVERSARIAL_PATTERNS } from './constants.ts';
 
 const Indicator = ({ level }: { level: ImpactLevel }) => {
   const activeCount = level === 'High' ? 3 : level === 'Medium' ? 2 : 1;

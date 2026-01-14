@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import { Clause, RiskAnalysis, RiskSeverity } from "../types";
+import { Clause, RiskAnalysis, RiskSeverity } from "../types.ts";
 
 export const analyzeCreditAgreement = async (
   text: string, 
